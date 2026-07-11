@@ -1,5 +1,5 @@
 import type { TextareaHTMLAttributes } from "react";
-import { cx } from "./utils";
+import { cn } from "./utils";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;
@@ -24,7 +24,7 @@ export function Textarea({
       ) : null}
       <textarea
         id={textareaId}
-        className={cx(
+        className={cn(
           "min-h-32 rounded-lg border bg-surface-container-lowest px-4 py-3 text-base text-on-surface outline-none transition-colors",
           "placeholder:text-outline",
           error

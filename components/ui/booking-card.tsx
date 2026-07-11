@@ -34,14 +34,18 @@ export function BookingCard({
   guestName,
 }: BookingCardProps) {
   return (
-    <Card hoverable className="overflow-hidden">
+    <Card slug="1" hoverable className="overflow-hidden">
       <div className="aspect-video bg-surface-container-low" />
       <div className="space-y-4 p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 space-y-1">
-            <h3 className="truncate text-base font-semibold text-on-surface">{title}</h3>
+            <h3 className="truncate text-base font-semibold text-on-surface">
+              {title}
+            </h3>
             <p className="text-sm text-on-surface-variant">{location}</p>
-            {guestName ? <p className="text-xs text-outline">{guestName}</p> : null}
+            {guestName ? (
+              <p className="text-xs text-outline">{guestName}</p>
+            ) : null}
           </div>
           <Badge tone={statusToneMap[status]} dot>
             {statusLabelMap[status]}

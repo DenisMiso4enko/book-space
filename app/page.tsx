@@ -11,7 +11,9 @@ export default function Home() {
         description="Marketplace for booking coworking spaces, meeting rooms, and creative studios."
       />
       <div className="flex flex-wrap gap-3">
-        <Button>Explore spaces</Button>
+        <Button>
+          <Link href="/listings">Explore spaces</Link>
+        </Button>
         <Link
           href="/design-system"
           className="inline-flex h-11 items-center justify-center rounded-lg border border-primary bg-surface-container-lowest px-5 text-sm font-medium text-primary transition-all hover:bg-surface-row-hover"

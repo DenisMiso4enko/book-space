@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Card } from "./card";
-import { cx } from "./utils";
+import { cn } from "./utils";
 
 type MetricCardProps = {
   label: string;
@@ -26,7 +26,7 @@ export function MetricCard({
   icon,
 }: MetricCardProps) {
   return (
-    <Card className="p-6">
+    <Card slug="1" className="p-6">
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-3">
           <p className="text-sm font-medium text-on-surface-variant">{label}</p>
@@ -37,11 +37,15 @@ export function MetricCard({
           ) : null}
         </div>
         <div className="space-y-1">
-          <p className="text-3xl font-semibold tracking-tight text-on-surface">{value}</p>
+          <p className="text-3xl font-semibold tracking-tight text-on-surface">
+            {value}
+          </p>
           {subtitle ? <p className="text-sm text-outline">{subtitle}</p> : null}
         </div>
         {delta ? (
-          <p className={cx("text-sm font-medium", trendClasses[trend])}>{delta}</p>
+          <p className={cn("text-sm font-medium", trendClasses[trend])}>
+            {delta}
+          </p>
         ) : null}
       </div>
     </Card>

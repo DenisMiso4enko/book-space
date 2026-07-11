@@ -68,6 +68,7 @@ export default function DesignSystemPage() {
         />
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <ListingCard
+            slug="skyline-collective"
             title="Skyline Collective"
             neighborhood="Shoreditch"
             city="London"
@@ -77,6 +78,7 @@ export default function DesignSystemPage() {
             tags={["Wi-Fi", "Kitchen", "Private Suites"]}
           />
           <ListingCard
+            slug="the-atrium-hub"
             title="The Atrium Hub"
             neighborhood="Chelsea"
             city="New York"
@@ -86,6 +88,7 @@ export default function DesignSystemPage() {
             tags={["24/7 Access", "Meeting Rooms"]}
           />
           <ListingCard
+            slug="north-lane-studio"
             title="North Lane Studio"
             neighborhood="Mitte"
             city="Berlin"

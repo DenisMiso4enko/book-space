@@ -2,6 +2,7 @@ import { Card } from "./card";
 import { LiveStrip, type SlotState } from "./live-strip";
 
 type ListingCardProps = {
+  slug: string;
   title: string;
   city: string;
   neighborhood?: string;
@@ -13,6 +14,7 @@ type ListingCardProps = {
 };
 
 export function ListingCard({
+  slug,
   title,
   city,
   neighborhood,
@@ -25,7 +27,7 @@ export function ListingCard({
   const location = neighborhood ? `${neighborhood}, ${city}` : city;
 
   return (
-    <Card hoverable className="overflow-hidden">
+    <Card hoverable slug={slug} className="overflow-hidden">
       <div className="relative aspect-4/3 bg-surface-container-low">
         <div className="absolute right-3 top-3">
           <span className="inline-flex items-center gap-1 rounded-lg bg-rating-badge-bg px-2.5 py-1 text-xs font-semibold text-rating-badge-text shadow-sm">
@@ -36,13 +38,17 @@ export function ListingCard({
       <div className="space-y-4 p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 space-y-1">
-            <h3 className="truncate text-base font-semibold text-on-surface">{title}</h3>
+            <h3 className="truncate text-base font-semibold text-on-surface">
+              {title}
+            </h3>
             <p className="text-sm text-on-surface-variant">{location}</p>
             {capacity ? (
               <p className="text-xs text-outline">Up to {capacity} people</p>
             ) : null}
           </div>
-          <p className="shrink-0 text-base font-semibold text-secondary">${pricePerDay}/day</p>
+          <p className="shrink-0 text-base font-semibold text-secondary">
+            ${pricePerDay}/day
+          </p>
         </div>
 
         {tags.length > 0 ? (
