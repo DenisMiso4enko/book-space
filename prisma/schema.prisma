@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  avatarUrl String?
+  role      Role      @default(TENANT)
+  listings  Listing[] @relation("HostListings")
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Listing {
+  id           String    @id @default(cuid())
+  slug         String    @unique
+  title        String
+  description  String
+  city         String
+  neighborhood String?
+  imageUrl     String
+  pricePerDay  Int
+  capacity     Int
+  rating       Float     @default(4.8)
+  amenities    String[]  @default([])
+  hostId       String
+  host         User      @relation("HostListings", fields: [hostId], references: [id])
+  bookings     Booking[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Booking {
+  id        String        @id @default(cuid())
+  listingId String
+  listing   Listing       @relation(fields: [listingId], references: [id])
+  tenantId  String
+  tenant    User          @relation(fields: [tenantId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  status    BookingStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+enum Role {
+  TENANT
+  HOST
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
