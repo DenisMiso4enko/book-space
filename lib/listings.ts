@@ -1,9 +1,10 @@
 import { prisma } from "@/lib/prisma";
+import type { Listing } from "@prisma/client";
 import { cacheLife, cacheTag } from "next/cache";
 
 const TOP_LISTINGS_FOR_STATIC = 10;
 
-export async function getListings() {
+export async function getListings(): Promise<Listing[]> {
   "use cache";
   cacheTag("listings");
   cacheLife("hours");
@@ -12,7 +13,7 @@ export async function getListings() {
   });
 }
 
-export async function getListingBySlug(slug: string) {
+export async function getListingBySlug(slug: string): Promise<Listing | null> {
   "use cache";
   cacheTag("listings", `listing:${slug}`);
   cacheLife("hours");
