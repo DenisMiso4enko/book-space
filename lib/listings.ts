@@ -22,7 +22,9 @@ export async function getListingBySlug(slug: string) {
 }
 
 /** Top-N slugs for build-time prerender; remaining routes resolve on demand. */
-export async function getTopListingSlugs(limit = TOP_LISTINGS_FOR_STATIC) {
+export async function getTopListingSlugs(
+  limit = TOP_LISTINGS_FOR_STATIC,
+): Promise<{ slug: string }[]> {
   "use cache";
   cacheTag("listings");
   cacheLife("hours");
