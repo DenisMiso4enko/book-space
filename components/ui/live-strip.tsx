@@ -1,4 +1,4 @@
-import { cx } from "./utils";
+import { cn } from "./utils";
 
 export type SlotState = "available" | "booked" | "past" | "selected";
 
@@ -36,7 +36,7 @@ export function LiveStrip({
         {slots.map((slot, index) => (
           <span
             key={`${slot}-${index}`}
-            className={cx(
+            className={cn(
               "block rounded-sm border transition-all",
               sizeClasses[size],
               stateClasses[slot],

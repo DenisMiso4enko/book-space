@@ -7,6 +7,7 @@ import {
   PrismaClient,
   Role,
 } from "@prisma/client";
+import { LISTING_IMAGE_PATHS } from "../lib/listing-images";
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -18,14 +19,7 @@ const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString }),
 });
 
-const listingImages = [
-  "/listings/atrium-loft.svg",
-  "/listings/river-dock.svg",
-  "/listings/north-lane.svg",
-  "/listings/signal-yard.svg",
-  "/listings/paper-hall.svg",
-  "/listings/canvas-room.svg",
-];
+const listingImages = LISTING_IMAGE_PATHS;
 
 const listingsSeed = [
   {

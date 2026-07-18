@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { cx } from "./utils";
+import { cn } from "./utils";
 
 type ButtonVariant = "primary" | "outline" | "ghost" | "dark";
 type ButtonSize = "sm" | "md" | "lg";
@@ -48,7 +48,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={cx(
+      className={cn(
         "inline-flex items-center justify-center gap-2 border font-sans font-medium transition-all duration-150",
         pill ? "rounded-full" : "rounded-lg",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background",

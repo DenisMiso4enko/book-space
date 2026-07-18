@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes } from "react";
-import { cx } from "./utils";
+import { cn } from "./utils";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -17,7 +17,7 @@ export function Input({ label, hint, error, className, id, ...props }: InputProp
       ) : null}
       <input
         id={inputId}
-        className={cx(
+        className={cn(
           "h-11 rounded-lg border bg-surface-container-lowest px-4 text-base text-on-surface outline-none transition-colors",
           "placeholder:text-outline",
           error
