@@ -2,7 +2,7 @@ import { HEADER_LINKS } from "../config/headerLinks";
 
 export default function HeaderNavFallback() {
   return (
-    <div className="flex items-end gap-8">
+    <div className="flex items-center gap-8">
       {HEADER_LINKS.map((link) => (
         <span
           key={link.id}

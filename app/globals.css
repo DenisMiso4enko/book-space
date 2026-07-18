@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.mjs";
 
 /* Tokens from design/DESIGN.md — names match the design file exactly */
 :root {
@@ -141,6 +142,8 @@
   --color-rating-badge-bg: var(--rating-badge-bg);
   --color-rating-badge-text: var(--rating-badge-text);
   --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-jetbrains-mono);
 }
 
 * {

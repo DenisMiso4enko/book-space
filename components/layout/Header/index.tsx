@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 export default function Header() {
   return (
-    <header className="py-4 px-10 border border-b-outline-variant flex justify-between items-center">
+    <header className="py-4 px-10 border-b bg-on-primary border-b-outline-variant flex justify-between items-center">
       <div className="flex gap-8 items-center">
         <Logo />
         <Suspense fallback={<HeaderNavFallback />}>

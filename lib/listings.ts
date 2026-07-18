@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { cacheLife, cacheTag } from "next/cache";
 
+const TOP_LISTINGS_FOR_STATIC = 10;
+
 export async function getListings() {
   "use cache";
   cacheTag("listings");
@@ -16,5 +18,17 @@ export async function getListingBySlug(slug: string) {
   cacheLife("hours");
   return prisma.listing.findUnique({
     where: { slug },
+  });
+}
+
+/** Top-N slugs for build-time prerender; remaining routes resolve on demand. */
+export async function getTopListingSlugs(limit = TOP_LISTINGS_FOR_STATIC) {
+  "use cache";
+  cacheTag("listings");
+  cacheLife("hours");
+  return prisma.listing.findMany({
+    select: { slug: true },
+    orderBy: [{ rating: "desc" }, { createdAt: "desc" }],
+    take: limit,
   });
 }

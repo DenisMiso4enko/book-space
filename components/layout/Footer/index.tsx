@@ -6,7 +6,6 @@ export default function Footer() {
   return (
     <footer className="bg-surface-container-high flex justify-between items-center gap-4 p-10">
       <CopyRights />
-
       <div className="flex gap-6">
         {FOOTER_LINKS.map((link) => (
           <FooterLink key={link.id} link={link.link} title={link.title} />
@@ -15,3 +14,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+// TODO: add translation and share icons

@@ -8,12 +8,10 @@ export default function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-end gap-8">
+    <div className="flex items-center gap-8">
       {HEADER_LINKS.map((link) => {
         const isActive =
-          link.link === "/"
-            ? pathname === "/"
-            : pathname.startsWith(link.link);
+          link.link === "/" ? pathname === "/" : pathname.startsWith(link.link);
 
         return (
           <HeaderLink
