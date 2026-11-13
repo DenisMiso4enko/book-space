@@ -1,22 +1,22 @@
 import Logo from "@/components/ui/logo";
 import HeaderNav from "./components/HeaderNav";
 import HeaderNavFallback from "./components/HeaderNavFallback";
-import { Button } from "@/components/ui/button";
+import HeaderAuth from "./components/HeaderAuth";
+import HeaderAuthFallback from "./components/HeaderAuthFallback";
 import { Suspense } from "react";
 
 export default function Header() {
   return (
-    <header className="py-4 px-10 border-b bg-on-primary border-b-outline-variant flex justify-between items-center">
-      <div className="flex gap-8 items-center">
+    <header className="flex items-center justify-between border-b border-b-outline-variant bg-on-primary px-10 py-4">
+      <div className="flex items-center gap-8">
         <Logo />
         <Suspense fallback={<HeaderNavFallback />}>
           <HeaderNav />
         </Suspense>
       </div>
-      <div className="flex gap-4 items-center">
-        <Button variant="ghost">Sign in</Button>
-        <Button variant="primary">Sign up</Button>
-      </div>
+      <Suspense fallback={<HeaderAuthFallback />}>
+        <HeaderAuth />
+      </Suspense>
     </header>
   );
 }

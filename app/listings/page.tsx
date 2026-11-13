@@ -20,7 +20,7 @@ export default async function ListingsPage() {
   const listings = await getListings();
 
   return (
-    <main className="mx-auto flex w-full max-w-[1280px] items-start justify-between gap-6 640:p-6 1024:p-10">
+    <main className="mx-auto flex w-full max-w-7xl items-start justify-between gap-6 640:p-6 1024:p-10">
       <ListingSidebar />
       <div className="min-w-0 flex-1">
         <ListingsHeader />
