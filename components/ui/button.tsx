@@ -1,16 +1,30 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
 import { cn } from "./utils";
 
 type ButtonVariant = "primary" | "outline" | "ghost" | "dark";
 type ButtonSize = "sm" | "md" | "lg";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonBaseProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   pill?: boolean;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
+  className?: string;
+  children?: ReactNode;
 };
+
+type ButtonAsButton = ButtonBaseProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = ButtonBaseProps & {
+  href: string;
+};
+
+type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 /**
  * Design mapping (DESIGN.md):
@@ -44,24 +58,38 @@ export function Button({
   leadingIcon,
   trailingIcon,
   children,
+  href,
   ...props
 }: ButtonProps) {
-  return (
-    <button
-      className={cn(
-        "inline-flex items-center justify-center gap-2 border font-sans font-medium transition-all duration-150",
-        pill ? "rounded-full" : "rounded-lg",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        "disabled:cursor-not-allowed disabled:border-outline-variant disabled:bg-tertiary-fixed disabled:text-outline disabled:shadow-none",
-        variantClasses[variant],
-        sizeClasses[size],
-        className,
-      )}
-      {...props}
-    >
+  const classes = cn(
+    "inline-flex items-center justify-center gap-2 border font-sans font-medium transition-all duration-150",
+    pill ? "rounded-full" : "rounded-lg",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+    "disabled:cursor-not-allowed disabled:border-outline-variant disabled:bg-tertiary-fixed disabled:text-outline disabled:shadow-none",
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  );
+
+  const content = (
+    <>
       {leadingIcon ? <span aria-hidden>{leadingIcon}</span> : null}
       <span>{children}</span>
       {trailingIcon ? <span aria-hidden>{trailingIcon}</span> : null}
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={classes}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button className={classes} {...props}>
+      {content}
     </button>
   );
 }
